@@ -1,0 +1,24 @@
+shayk96
+207902602
+
+The Whatever player randomizes a set of numbers and places his mark according to the them. The chances to win at random
+are slim at best when the board size is 6 and are getting better as the board size are getting smaller. On the other
+hand, if the board is getting bigger the chances are getting smaller and smaller. The same thing happens with the win
+streak length. To sum it up, the Whatever player will loose a big percentage of his games, with the only exception
+being the games he will play against another Whatever player. In that case the win\lose distribution will be
+around 50:50 with some games that will finish in a draw.
+
+The Clever player tries to finish a streak, one row at a time. If he encountered the second player mark he will simply
+skip over it and continue to fill up the row. this strategy is very effective against the Whatever player. The downside
+is that against a player that knows about the his strategy, the Clever player will always loose. It is a strategy that
+is easy to block.
+
+The results of the tournaments(500 games) between the player:
+WhateverPlayer(player 1) against CleverPlayer(player 2): === player 1: 29 | player 2: 471 | Draws: 0 ===
+CleverPlayer(player 1) against SnartypamtsPlayer(player 2): === player 1: 0 | player 2: 500 | Draws: 0 ===
+SnartypamtsPlayer(player 1) against WhateverPlayer(player 2): === player 1: 481 | player 2: 19 | Draws: 0 ===
+
+The results of the tournament(10000 games) between 2 WhateverPlayers:
+WhateverPlayer(player 1) against WhateverPlayer(player 2): === player 1: 4924 | player 2: 5019 | Draws: 57 ===
+
+
