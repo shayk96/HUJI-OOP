@@ -1,0 +1,40 @@
+shayk96
+207902602
+
+=============================
+=          Design           =
+=============================
+I chose to implement the design as it is now because of several reasons:
+first of all, the game engine given to us made it easy to design in this way.
+secondly, the structure has a very clear logic: a package for the game objects and a package for the brick strategies.
+there is no overlapping responsibilities between the packages and the purpose of each package is clear.
+the classes are well focused. there is a single class for every game object and the functions that each class implements
+are limited to the class only, no action is preformed on another class.
+
+=============================
+=  Implementation details   =
+=============================
+The main class is the BrickerGameClass. the class manages the game and centralizes all the options for the game.
+in this way, any change a user wants to do is easy to implement.
+the distinct purpose of the two packages also makes sense.
+
+=============================
+=      Algo questions       =
+=============================
+1. The alotStudyTime is correct because of several reasons:
+    i.  the first thing we do is to sort the two arrays from the smallest the the biggest. this takes O(2*(nlogn)) because
+        we do it in quick sort algorithm.
+    ii. next, we start by checking if the smallest time taking task can fit in the smallest time slot. if yes, we fill
+        it up, and check if the next task fits int the next time slot. if no, we know that the list is ordered so we
+        can skip to the next time with out checking the rest. in the worse case we will go over all the tasks - O(n)
+    iii. the total time is O(n) + O(2*nlogn) = O(nlogn)
+2.  The bucketWalk is correct because we know the base case of the problem. for 0 litters we go 0 times. for 1 liter we
+    go 1 time. the next one is the sum of the two predecessors. so we fill a table worth answers from 0 litter to n
+    litters, which  takes O(n). than ew return the corresponding table slot.
+3.  the minLeap is correct because each time ew check what is the biggest leap we can do that will result in being
+    closer to the last leaf, starting from the last, in order to minimize the number of leaps needed.
+    in the worst case we will have to go over all the leaves - O(n)
+4.  The bucketWalk is correct because we know the base case of the problem. for 0 nodes we have 0 options times.
+    for 1 node we have 1 option. the next one is the Multiplication of the predecessors from closest to farthest and
+    summing up each each time . so we fill a table with answers from 0 litter to n
+    nodes, which  takes O(n^2). than ew return the corresponding table slot.
