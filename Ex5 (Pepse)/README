@@ -1,0 +1,68 @@
+hila_ziv
+shayk96
+
+=============================
+=          UML              =
+=============================
+At the beginning we thought that the Leaf class should inherit from Block. During the implementation we figured out
+that this two classes don't have enough in common and we changed it so Leaf will inherit from GameObject class,
+and would use block objects for it's base rendering.
+In addition we planned that the class Trunk won't inherit from anything. When we wanted to delete objects out of the
+window, we figured out that if we delete a trunk we need to delete all of it's leaves, so they have to be connected
+somehow.
+Than we decided that trunk will be a game object too, and each trunk holds array of it's leaves.
+
+
+=============================
+=   Implementation Details  =
+=============================
+(*) Infinite world:
+We used a predetermined buffer to initialize the game, so we initialize a world bigger than our screen,
+in the range of the buffer. Than we override the update method in PepseGameManager, and at each frame we check whether
+the distance of the avatar from the edge of the window is smaller than our buffer. If so, we create the world in the
+direction the avatar is moving.
+In addition, to make the game run better, we delete game objects that are out of the buffer we determined, by looping
+every frame over the objects and checking their location according to the buffer.
+
+(*) trees package:
+We implemented three classes in this package - Tree, Leaf and Trunk.
+- Trunk inherits from GameObject and is rendered using a single extended block.
+  Each trunk has an array holding it's leaves.
+- Leaf inherits from GameObject and each leaf is rendered using a single block.
+  Each leaf has it's own life cycle, as explained in the exercise PDF. We implemented the unique behaviors of each leaf
+  using Transition and ScheduledTask.
+  We also defined physics for the leaves, so the avatar can jump and stand on them.
+- Tree doesn't inherit from anything. It creates a trunk and it's leaves, each trunk has random
+  height (bounded by a number we defined), and number of leaves according to it's height.
+We chose this implementation because we wanted Leaf and Trunk to be game objects, that way we can render and delete them
+as necessary. We thought that tree shouldn't be a game object because a tree itself doesn't have unique behavior,
+it is combined of two types of game objects, which have their own unique behavior.
+
+  
+=============================
+=    Design and Dilemmas    =
+=============================
+Design:
+We designed the Tree class to be the one responsible for creating the trunk and leaves.
+This we the user only needs to know about the Tree class and use the method "create", without knowing the complexity
+of the Leaf class. This goes with the principle of encapsulation and making the project easier to use.
+
+Dilemmas:
+- At the beginning we thought that each trunk should be created using number of blocks.
+  When we tried to implement it, we understood it's better to use just one block for two reasons:
+  1. It decrements the number of game objects.
+  2. Since trunk doesn't have a special behavior for each block (as the leaves), we don't need to divide
+     it, and can look at it as one object.
+- We had a difficult time understanding how to create the leaves behavior,
+  but at the end we decided to divide the code into really small methods, which made it easier to use with lambdas
+  and callbacks.
+- It took us a lot of time to create the infinite world in a way that we won't create too much unnecessary objects,
+  but still be able to move without seeing the creation of the world. At the end we thought about the idea of the
+  buffer,which limits our world and assigned it a number that achieves both demands.
+
+=============================
+=          Bonus            =
+=============================
+- The avatar can stand on the leaves. Because of this we decided that the avatar won't collide with trunks, so she can
+  move freely on the ground.
+- The avatar can go through the leaves - if you stand on a tree, press space+down at the same time (like in maplestory).
