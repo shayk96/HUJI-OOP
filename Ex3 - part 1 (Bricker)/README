@@ -1,0 +1,19 @@
+shayk96
+207902602
+
+=============================
+=          Design           =
+=============================
+I chose to implement the design as it is now because of several reasons:
+first of all, the game engine given to us made it easy to design in this way.
+secondly, the structure has a very clear logic: a package for the game objects and a package for the brick strategies.
+there is no overlapping responsibilities between the packages and the purpose of each package is clear.
+the classes are well focused. there is a single class for every game object and the functions that each class implements
+are limited to the class only, no action is preformed on another class.
+
+=============================
+=  Implementation details   =
+=============================
+The main class is the BrickerGameClass. the class manages the game and centralizes all the options for the game.
+in this way, any change a user wants to do is easy to implement.
+the distinct purpose of the two packages also makes sense.
